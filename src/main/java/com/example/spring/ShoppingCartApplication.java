@@ -1,20 +1,21 @@
 package com.example.spring;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 public class ShoppingCartApplication {
 	public static void main(String[] args) {
-		 /*
-        ShoppingCart cart = new ShoppingCart();
-        cart.checkOut(10.10);
-         */
-
-		/**
-		 By making the loosely coupled code, we can choose the whichever payment processor as per client requirement.
-		 */
-		ShoppingCart cart1 = new ShoppingCart(new PhonePayPaymentProcessor());
-		cart1.checkOut(10.10);
+		System.out.println("Constructor Injection Using the xml config:");
+		ApplicationContext xmlContext = new ClassPathXmlApplicationContext("spring.xml");
+		ShoppingCart cart = xmlContext.getBean("shoppingCart", ShoppingCart.class);
+		cart.checkOut(10.5);
 		System.out.println();
 
-		ShoppingCart cart2 = new ShoppingCart(new GPayPaymentProcessor());
-		cart2.checkOut(10.10);
+		System.out.println("Constructor Injection Using the Java config:");
+		ApplicationContext javaConfigContext = new AnnotationConfigApplicationContext(AppConfig.class);
+		ShoppingCart shoppingCart = javaConfigContext.getBean("shoppingCart", ShoppingCart.class);
+		shoppingCart.checkOut(10.5);
 	}
 
 }
