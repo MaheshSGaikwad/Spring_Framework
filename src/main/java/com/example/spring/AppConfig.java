@@ -21,6 +21,9 @@ public class AppConfig {
 
     @Bean(name = "shoppingCart")
     public ShoppingCart createShoppingCart(){
-        return new ShoppingCart(createGPayPaymentProcessor());
+       // return new ShoppingCart(createGPayPaymentProcessor());
+        ShoppingCart cart = new ShoppingCart();
+        cart.setPaymentProcessor(createGPayPaymentProcessor());
+        return cart;
     }
 }

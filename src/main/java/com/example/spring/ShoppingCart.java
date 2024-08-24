@@ -10,13 +10,21 @@ public class ShoppingCart {
      */
     private IPaymentProcessor paymentProcessor;
 
+    ShoppingCart(){
+    }
+
+    public IPaymentProcessor getPaymentProcessor() {
+        return paymentProcessor;
+    }
+
     /**
-     * This is example of constructor injection which involves providing the dependencies through constructor of the class.
+     * This is example of setter injection which involves the providing the dependencies through setter method.
      * @param paymentProcessor
      */
-    ShoppingCart(IPaymentProcessor paymentProcessor){
+    public void setPaymentProcessor(IPaymentProcessor paymentProcessor) {
         this.paymentProcessor = paymentProcessor;
     }
+
     void checkOut(Double amount){
         paymentProcessor.proceedPayment(amount);
     }

@@ -5,7 +5,9 @@
 		https://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="shoppingCart" class="com.example.spring.ShoppingCart">
-        <constructor-arg ref="gPay"/>
+        <!--  <constructor-arg ref="gPay"/> -->
+        <!-- In case of setter injection we use the property field & gives the reference to the associated dependency. -->
+        <property name="paymentProcessor" ref="gPay"/>
     </bean>
 
     <bean id="phonePay" class="com.example.spring.PhonePayPaymentProcessor">
