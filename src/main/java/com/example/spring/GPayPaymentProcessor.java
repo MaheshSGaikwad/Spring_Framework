@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
  eg. As the IPaymentProcessor is interface having the two of the component GPay & PhonePay , so make the GPay for the autowiring, we use this annotation.
  */
 @Component
-@Primary
 public class GPayPaymentProcessor implements IPaymentProcessor{
     public void proceedPayment(Double amount){
         if (amount != 0){
