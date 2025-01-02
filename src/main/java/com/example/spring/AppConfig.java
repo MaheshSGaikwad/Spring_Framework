@@ -4,10 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 
 /**
- * ComponentScan:-
-  - In the component scanning spring will automatically scan specified package in the project for the beans which need to be created
-    in our application(i.e. classes annotated with @Component) & when it finds, it will gather them into its ApplicationContext.
-  - By using the @Autowired it will inject the dependency automatically where ever it is needed.
+  We can create the java lifecycle hooks using the bean inside the AppConfig by mentioning the initMethod & destroyMethod
  */
 @ComponentScan(basePackages = "com.example.spring")
 public class AppConfig {
@@ -22,10 +19,10 @@ public class AppConfig {
 //        return new PhonePayPaymentProcessor();
 //    }
 //
-//    @Bean(name = "gPay")
-//    public GPayPaymentProcessor createGPayPaymentProcessor(){
-//        return new GPayPaymentProcessor();
-//    }
+    @Bean(name = "gPay",initMethod = "init",destroyMethod = "destroy")
+    public GPayPaymentProcessor createGPayPaymentProcessor(){
+        return new GPayPaymentProcessor();
+    }
 //
 //    @Bean(name = "shoppingCart")
 //    public ShoppingCart createShoppingCart(){

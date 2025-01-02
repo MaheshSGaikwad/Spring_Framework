@@ -4,13 +4,10 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 /**
-1. @Component annotation indicates that an annotated class is a "spring bean/component".
- It tells spring container to automatically create spring bean.
-2. @Primary annotation is used when there are multiple components of same types are present for the autowiring,so to
-  define which component to be used we use the primary annotation.
- eg. As the IPaymentProcessor is interface having the two of the component GPay & PhonePay , so make the GPay for the autowiring, we use this annotation.
- */
-@Component
+ * This is third way of creating the bean lifecycle hooks by creating init() & destroy() method in this class & using Java App
+ * config class's beans.
+*/
+//@Component
 public class GPayPaymentProcessor implements IPaymentProcessor{
     public void proceedPayment(Double amount){
         if (amount != 0){
@@ -19,6 +16,13 @@ public class GPayPaymentProcessor implements IPaymentProcessor{
         }
         else
             throw new RuntimeException("Please enter the valid amount.");
+    }
+
+    public void init(){
+        System.out.println("Inside init gpay class");
+    }
+    public void destroy(){
+        System.out.println("inside destroy method gpay class");
     }
 }
 
